@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/parse_types" />
+
+    <TextView
+        android:id="@+id/speedResults"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Speed Results" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:checkedButton="@+id/tree_button">
+
+        <RadioButton
+            android:id="@+id/tree_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tree" />
+
+        <RadioButton
+            android:id="@+id/stream_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stream" />
+    </RadioGroup>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

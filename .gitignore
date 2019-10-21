@@ -22,6 +22,7 @@ Thumbs.db
 .DS_Store
 
 # Android Studio
+*.google
 *.iml
 .idea
 #.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
