@@ -127,8 +127,7 @@ class RecyclerViewFragment : Fragment() {
             updateData(dataset)
         }
     }
-
-
+    
     private fun updateData(dataset: List<String>) {
         recyclerView.adapter = CustomAdapter(dataset)
         textView.text = logText
@@ -156,7 +155,7 @@ class RecyclerViewFragment : Fragment() {
     fun initTreeList(stream: Boolean): List<String> {
         updateTimeMS()
         Log.d("PTK", "Start network call, time: " + timerMS)
-        val inputStream = getURLStream(getSelectedSize().url)
+        val inputStream = getURLStream(getRandomParams(getSelectedSize().url))
         logText += "Initial heap MB: " + getHeapMB() + "\r\n"
 
         var diffMS = diffTimeMS()
@@ -174,6 +173,10 @@ class RecyclerViewFragment : Fragment() {
         return list //arrayListOf("Tree item 1", "Tree item 2")
     }
 
+    fun getRandomParams(url: String): String {
+        return url+"&cibata="+System.currentTimeMillis()
+    }
+
     fun getParser(stream: Boolean): ParseInterface {
         return when (spinner.selectedItemPosition) {
             0 -> if (stream) SmallJsonTree() else SmallJsonTree()
@@ -187,6 +190,7 @@ class RecyclerViewFragment : Fragment() {
         val request = Request.Builder()
                 .url(url)
                 .cacheControl(CacheControl.FORCE_NETWORK)
+                .addHeader("Cache-Control", "no-cache")
                 .build()
         val call = client.newCall(request)
         return call.execute().body?.byteStream() ?: "".byteInputStream()
@@ -238,4 +242,5 @@ class RecyclerViewFragment : Fragment() {
         private val DATASET_COUNT = 60
     }
 }
+
 
